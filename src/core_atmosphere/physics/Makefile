@@ -5,7 +5,6 @@ COREDEF = -Dmpas
 endif
 
 all:
-	./../tools/manage_externals/checkout_externals --externals ./../Externals.cfg
 	$(MAKE) lookup_tables core_physics_init core_physics_mmm core_physics_monan core_UGWP core_physics_wrf core_physics_noahmp core_physics
 
 dummy:

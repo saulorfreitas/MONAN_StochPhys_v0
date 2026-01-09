@@ -1,1 +1,1 @@
-Makefile_gfortran
+Makefile_intel

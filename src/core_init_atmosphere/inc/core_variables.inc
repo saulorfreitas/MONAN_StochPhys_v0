@@ -3,4 +3,4 @@
        core % modelVersion = '8.3.0'
        core % executableName = 'init_atmosphere_model'
        core % git_version = 'unknown'
-       core % build_target = 'gnu'
+       core % build_target = 'intel2-xd2000'
