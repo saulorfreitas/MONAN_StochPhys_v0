@@ -86,7 +86,8 @@ module mpas_stochastic_physics
 !local variables:
     type(block_type),pointer:: block
     integer :: maxblk, blk_sz(16)
-    type(MPI_comm) ::  mpi_comm
+    type(MPI_comm) ::  mpi_comm_b
+    type(dm_info) :: dminfo_teste
     integer :: mpi_root, pid
     integer :: iret
     real(kind=kind_phys):: sppt_amp, dtp
@@ -172,13 +173,16 @@ module mpas_stochastic_physics
       block => block%next
     enddo
 
-!tmp srf
 !    if (pid == 0) print*, 'Call init_stochastic_physics (domain, ...).'
-!    mpi_root = 0; mpi_comm = domain%dminfo%comm
-!    dtp = dt
-!    ierr = 0
-!    call init_stochastic_physics(domain, nVertLevels, blksz, dtp, sppt_amp, &
-!         xlon, xlat, zk, mpi_comm, mpi_root, iret) 
+    mpi_root = 0
+!-srf   orig: mpi_comm_b = domain%dminfo%comm
+    dminfo_teste =  domain%dminfo
+    mpi_comm_b = dminfo_teste%comm
+!-srf    
+    dtp = dt
+    ierr = 0
+    call init_stochastic_physics(domain, nVertLevels, blksz, dtp, sppt_amp, &
+         xlon, xlat, zk, mpi_comm_b, mpi_root, iret) 
 
     if (pid == 0) print*, 'Done init_stochastic_physics (domain, ...).', iret
 
